@@ -75,7 +75,7 @@ def sync_file(fileInfo):
             if needsHeader:
                 header_map = to_singer_schema(row)
                 singer.write_schema(
-                    fileInfo["entity"], header_map, fileInfo.get("keys")
+                    fileInfo["entity"], header_map, fileInfo.get("keys", [])
                 )
                 needsHeader = False
             else:
