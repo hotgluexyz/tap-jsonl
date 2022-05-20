@@ -78,10 +78,10 @@ def sync_file(fileInfo):
                     fileInfo["entity"], header_map, fileInfo.get("keys", [])
                 )
                 needsHeader = False
-            else:
-                with Transformer() as transformer:
-                    rec = transformer.transform(row, header_map)
-                    singer.write_record(fileInfo["entity"], rec)
+                
+            with Transformer() as transformer:
+                rec = transformer.transform(row, header_map)
+                singer.write_record(fileInfo["entity"], rec)
     singer.write_state(STATE)
 
 
