@@ -24,7 +24,10 @@ def to_singer_schema(input):
         return property
     elif type(input) == list:
         if len(input):
-            return dict(type=["array", "null"], items=to_singer_schema(input[0]))
+            new_input = {}
+            for i in input:
+                new_input.update(i)
+            return dict(type=["array", "null"], items=to_singer_schema(new_input))
         else:
             return {"type": ["array", "null"]}
     elif type(input) == boolean:
